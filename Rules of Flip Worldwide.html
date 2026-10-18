@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#16231e" />
+  <link rel="icon" href="data:," />
+  <title>Rules of Flip Worldwide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f4f2ea;
+      --surface: #fffdf7;
+      --ink: #17211d;
+      --muted: #53615a;
+      --line: #bcc3b8;
+      --strong-line: #17211d;
+      --forest: #173f32;
+      --forest-2: #245b48;
+      --signal: #f2643e;
+      --signal-ink: #fff9f0;
+      --lime: #d8f55f;
+      --positive: #1f7651;
+      --negative: #b43f2b;
+      --shadow: rgba(18, 31, 25, .12);
+      --serif: "Source Serif 4", Georgia, serif;
+      --sans: "Libre Franklin", "Helvetica Neue", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #101814;
+        --surface: #16211c;
+        --ink: #eff2e9;
+        --muted: #aebbb2;
+        --line: #3c4b43;
+        --strong-line: #e7ece4;
+        --forest: #0d2f25;
+        --forest-2: #27644f;
+        --signal: #ff7652;
+        --signal-ink: #1d100b;
+        --lime: #cdea56;
+        --positive: #7ce1ac;
+        --negative: #ff957c;
+        --shadow: rgba(0, 0, 0, .25);
+      }
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --paper: #f4f2ea;
+      --surface: #fffdf7;
+      --ink: #17211d;
+      --muted: #53615a;
+      --line: #bcc3b8;
+      --strong-line: #17211d;
+      --forest: #173f32;
+      --forest-2: #245b48;
+      --signal: #f2643e;
+      --signal-ink: #fff9f0;
+      --lime: #d8f55f;
+      --positive: #1f7651;
+      --negative: #b43f2b;
+      --shadow: rgba(18, 31, 25, .12);
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #101814;
+      --surface: #16211c;
+      --ink: #eff2e9;
+      --muted: #aebbb2;
+      --line: #3c4b43;
+      --strong-line: #e7ece4;
+      --forest: #0d2f25;
+      --forest-2: #27644f;
+      --signal: #ff7652;
+      --signal-ink: #1d100b;
+      --lime: #cdea56;
+      --positive: #7ce1ac;
+      --negative: #ff957c;
+      --shadow: rgba(0, 0, 0, .25);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    button { color: inherit; }
+    .shell { max-width: 1240px; margin: 0 auto; padding: 0 28px 72px; }
+    .topline {
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--strong-line);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .topline a { text-decoration: none; }
+    .top-controls { display: flex; align-items: center; gap: 24px; }
+    .topline nav { display: flex; gap: 22px; flex-wrap: wrap; }
+    .topline nav a:hover, .topline nav a:focus-visible { color: var(--signal); }
+    .edition { white-space: nowrap; color: var(--muted); }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--strong-line);
+      background: transparent;
+      color: var(--ink);
+      padding: 7px 9px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      line-height: 1;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .theme-toggle:hover { background: var(--ink); color: var(--paper); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+    .theme-icon { width: 15px; height: 15px; flex: 0 0 auto; }
+    .theme-icon[hidden] { display: none; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.75fr) minmax(240px, .65fr);
+      min-height: 520px;
+      border-bottom: 1px solid var(--strong-line);
+    }
+    .hero-copy { padding: 70px 54px 64px 0; display: flex; flex-direction: column; justify-content: space-between; }
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--signal);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 860px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(54px, 8vw, 106px);
+      line-height: .88;
+      letter-spacing: -.055em;
+      font-weight: 650;
+    }
+    .hero-deck {
+      max-width: 730px;
+      margin: 42px 0 0;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.38;
+      color: var(--muted);
+    }
+    .hero-aside {
+      background: var(--forest);
+      color: #f7f7ed;
+      border-left: 1px solid var(--strong-line);
+      padding: 52px 30px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .rule-mark { font-family: var(--serif); font-size: 126px; line-height: .8; color: var(--lime); letter-spacing: -.08em; }
+    .hero-aside h2 { margin: 32px 0 14px; font-size: 19px; line-height: 1.2; }
+    .hero-aside p { margin: 0; color: #cbd8cf; font-size: 14px; }
+    .hero-aside .mini { padding-top: 26px; border-top: 1px solid #536a60; margin-top: 40px; }
+    .truth-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--strong-line);
+    }
+    .truth { padding: 28px 28px 30px 0; }
+    .truth + .truth { border-left: 1px solid var(--line); padding-left: 28px; }
+    .truth strong { display: block; font-family: var(--serif); font-size: 25px; margin-bottom: 5px; }
+    .truth span { font-size: 14px; color: var(--muted); }
+    section { scroll-margin-top: 18px; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 28px;
+      padding: 70px 0 30px;
+      border-bottom: 2px solid var(--strong-line);
+      align-items: end;
+    }
+    .section-no { font-family: var(--serif); font-size: 70px; line-height: .8; color: var(--signal); }
+    .section-head h2 { margin: 0; font-family: var(--serif); font-size: clamp(36px, 5vw, 62px); line-height: .98; letter-spacing: -.035em; }
+    .section-intro { margin: 16px 0 0; max-width: 760px; color: var(--muted); font-size: 17px; }
+    .rules { counter-reset: rules; }
+    .rule {
+      counter-increment: rules;
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr) minmax(210px, 310px);
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+    .rule::before {
+      content: counter(rules, decimal-leading-zero);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      color: var(--signal);
+      padding-top: 6px;
+    }
+    .rule h3 { margin: 0 0 9px; font-family: var(--serif); font-size: 27px; line-height: 1.08; }
+    .rule p { margin: 0; color: var(--muted); }
+    .rule .test {
+      background: color-mix(in srgb, var(--surface) 82%, var(--paper));
+      border-top: 3px solid var(--forest-2);
+      padding: 15px 16px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .rule .test b { display: block; color: var(--forest-2); margin-bottom: 4px; }
+    .model-wrap { padding: 32px 0 0; }
+    .formula {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      background: var(--forest);
+      color: #f7f7ed;
+      box-shadow: 0 18px 50px var(--shadow);
+    }
+    .formula-copy { padding: 42px; }
+    .formula-copy h3 { font-family: var(--serif); font-size: 37px; line-height: 1.05; margin: 0 0 14px; }
+    .formula-copy p { color: #cbd8cf; margin: 0 0 28px; }
+    .equation {
+      padding: 20px 0;
+      border-top: 1px solid #536a60;
+      border-bottom: 1px solid #536a60;
+      font-family: var(--serif);
+      font-size: clamp(21px, 3vw, 31px);
+      line-height: 1.35;
+    }
+    .formula-note { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 27px; }
+    .formula-note span { font-size: 13px; color: #cbd8cf; }
+    .formula-note b { display: block; color: var(--lime); font-size: 15px; margin-bottom: 4px; }
+    .calc { background: var(--surface); color: var(--ink); padding: 34px; border-left: 1px solid #536a60; }
+    .calc-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+    .calc h3 { margin: 0; font-size: 20px; }
+    .currency {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      padding: 9px 11px;
+      border-radius: 0;
+    }
+    .field { display: grid; grid-template-columns: 1fr minmax(105px, 150px); gap: 16px; align-items: center; margin: 12px 0; }
+    .field label { font-size: 13px; color: var(--muted); }
+    .field input {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      padding: 8px 4px;
+      text-align: right;
+      border-radius: 0;
+    }
+    .field input:focus { outline: 2px solid var(--signal); outline-offset: 2px; }
+    .output { margin-top: 24px; padding-top: 20px; border-top: 2px solid var(--strong-line); }
+    .output-row { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; margin: 9px 0; font-size: 14px; }
+    .output-row strong { font-family: var(--serif); font-size: 23px; }
+    .output-row.total { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .output-row.total strong { font-size: 32px; }
+    .result-note { margin: 16px 0 0; font-size: 12px; color: var(--muted); }
+    .territory-grid { display: grid; grid-template-columns: .8fr 1.2fr; border-bottom: 1px solid var(--strong-line); }
+    .regions { padding: 34px 28px 40px 0; border-right: 1px solid var(--line); }
+    .tablist { display: grid; gap: 8px; }
+    .tab {
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      text-align: left;
+      padding: 15px 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .tab[aria-selected="true"] { color: var(--signal); border-bottom-color: var(--signal); }
+    .tab:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+    .region-panel { padding: 40px 0 46px 42px; }
+    .region-panel[hidden] { display: none; }
+    .region-panel h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 34px; }
+    .region-panel > p { color: var(--muted); max-width: 690px; }
+    .questions { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 28px; border-top: 1px solid var(--line); }
+    .question { padding: 18px 20px 18px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .question:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
+    .question b { display: block; color: var(--forest-2); margin-bottom: 4px; }
+    .gate-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding-top: 28px; }
+    .gate { padding: 24px 24px 26px 0; }
+    .gate + .gate { border-left: 1px solid var(--line); padding-left: 24px; }
+    .gate .dot { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--strong-line); border-radius: 50%; font-size: 12px; font-weight: 800; margin-bottom: 16px; }
+    .gate h3 { margin: 0 0 8px; font-family: var(--serif); font-size: 23px; }
+    .gate p { margin: 0; color: var(--muted); font-size: 14px; }
+    .stop {
+      margin-top: 45px;
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      border: 2px solid var(--signal);
+      background: color-mix(in srgb, var(--signal) 7%, var(--paper));
+    }
+    .stop-title { background: var(--signal); color: var(--signal-ink); padding: 28px; font-weight: 800; font-size: 22px; display: flex; align-items: center; }
+    .stop-list { padding: 24px 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 34px; }
+    .stop-list span { font-size: 14px; padding-left: 18px; position: relative; }
+    .stop-list span::before { content: "×"; position: absolute; left: 0; color: var(--signal); font-weight: 800; }
+    footer {
+      margin-top: 74px;
+      padding-top: 28px;
+      border-top: 2px solid var(--strong-line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer strong { color: var(--ink); }
+    .backtop { text-align: right; }
+    @media (max-width: 850px) {
+      .shell { padding: 0 20px 56px; }
+      .topline nav { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { padding: 52px 0 42px; }
+      .hero-aside { border-left: 0; min-height: 330px; }
+      .rule-mark { font-size: 96px; }
+      .truth-strip { grid-template-columns: 1fr; }
+      .truth { padding: 22px 0; }
+      .truth + .truth { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
+      .section-head { grid-template-columns: 72px 1fr; padding-top: 56px; }
+      .section-no { font-size: 52px; }
+      .rule { grid-template-columns: 52px 1fr; gap: 16px; }
+      .rule .test { grid-column: 2; }
+      .formula { grid-template-columns: 1fr; }
+      .calc { border-left: 0; border-top: 1px solid #536a60; }
+      .territory-grid { grid-template-columns: 1fr; }
+      .regions { padding-right: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .tablist { grid-template-columns: repeat(3, 1fr); }
+      .tab { text-align: center; padding: 12px 5px; font-size: 12px; }
+      .region-panel { padding: 34px 0 42px; }
+      .gate-grid { grid-template-columns: repeat(2, 1fr); }
+      .gate:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+      .gate:nth-child(4) { border-top: 1px solid var(--line); }
+      .stop { grid-template-columns: 1fr; }
+      .stop-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .shell { padding-inline: 16px; }
+      .topline { min-height: 48px; }
+      .edition { font-size: 10px; }
+      h1 { font-size: 56px; }
+      .hero-copy { min-height: 450px; }
+      .hero-deck { font-size: 18px; margin-top: 32px; }
+      .hero-aside { padding: 38px 22px 28px; }
+      .section-head { grid-template-columns: 1fr; gap: 14px; }
+      .section-no { font-size: 42px; }
+      .rule { grid-template-columns: 38px 1fr; gap: 10px; }
+      .rule h3 { font-size: 23px; }
+      .rule .test { grid-column: 1 / -1; margin-top: 4px; }
+      .formula-copy, .calc { padding: 28px 20px; }
+      .formula-note { grid-template-columns: 1fr; }
+      .field { grid-template-columns: 1fr 110px; gap: 8px; }
+      .questions { grid-template-columns: 1fr; }
+      .question, .question:nth-child(even) { padding: 15px 0; border-left: 0; }
+      .tablist { grid-template-columns: 1fr 1fr; }
+      .gate-grid { grid-template-columns: 1fr; }
+      .gate, .gate + .gate, .gate:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); padding: 22px 0; }
+      .gate:first-child { border-top: 0; }
+      footer { grid-template-columns: 1fr; }
+      .backtop { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="shell" id="top">
+    <header class="topline">
+      <div class="edition">Field guide · Global edition</div>
+      <div class="top-controls">
+        <nav aria-label="Page sections">
+          <a href="#rules">12 rules</a>
+          <a href="#numbers">Deal math</a>
+          <a href="#local">Local checks</a>
+          <a href="#gates">Decision gates</a>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <svg class="theme-icon" id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          <svg class="theme-icon" id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          <span id="theme-label">Dark</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div>
+            <p class="kicker">Property flipping, without borders</p>
+            <h1 id="hero-title">Buy right.<br>Build tight.<br>Exit clean.</h1>
+          </div>
+          <p class="hero-deck">The universal rules behind a disciplined property flip—plus the legal, tax and market questions that must be answered locally.</p>
+        </div>
+        <aside class="hero-aside" aria-label="Core principle">
+          <div>
+            <div class="rule-mark">01</div>
+            <h2>Profit is secured at purchase—not discovered at resale.</h2>
+            <p>A beautiful renovation cannot rescue a bad basis. Begin with a conservative exit value, subtract every real cost and demand a margin for what you cannot know.</p>
+          </div>
+          <p class="mini"><strong>Worldwide rule:</strong> the arithmetic travels. The law does not.</p>
+        </aside>
+      </section>
+
+      <div class="truth-strip" aria-label="Three essential truths">
+        <div class="truth"><strong>Underwrite the downside</strong><span>Use sold evidence, slower timelines and cost ranges—not the rosiest case.</span></div>
+        <div class="truth"><strong>Verify locally</strong><span>Ownership, permits, taxes and selling rules change across borders.</span></div>
+        <div class="truth"><strong>Keep two exits</strong><span>Know the resale plan and a credible fallback before money leaves your account.</span></div>
+      </div>
+
+      <section id="rules">
+        <header class="section-head">
+          <div class="section-no">I</div>
+          <div><h2>The twelve rules</h2><p class="section-intro">These principles are portable. Apply them in every market, then have qualified local professionals validate the details.</p></div>
+        </header>
+        <div class="rules">
+          <article class="rule"><div><h3>Buy from evidence, not excitement</h3><p>Anchor after-repair value to recent, nearby sold comparables with similar size, use, condition and tenure. Active listings show competition; they do not prove value.</p></div><div class="test"><b>Deal test</b>Can you defend the exit price with at least three relevant closed sales?</div></article>
+          <article class="rule"><div><h3>Write the complete cost stack</h3><p>Count acquisition tax, legal fees, financing, utilities, insurance, permits, labor, materials, selling fees, transfer taxes, vacancy and the cost of time.</p></div><div class="test"><b>Deal test</b>Would a six-month delay still leave a worthwhile profit?</div></article>
+          <article class="rule"><div><h3>Protect a real contingency</h3><p>Older assets, unfamiliar construction and limited inspections require larger buffers. Contingency belongs in the budget—not in the hoped-for profit.</p></div><div class="test"><b>Starting range</b>Often 10–20% of renovation cost; raise it when uncertainty rises.</div></article>
+          <article class="rule"><div><h3>Prove title and possession</h3><p>Confirm the seller’s authority, liens, easements, tenure, boundaries, occupancy, inheritance claims and the legal path to vacant possession before closing.</p></div><div class="test"><b>Never assume</b>A recorded sale does not always mean immediate or uncontested possession.</div></article>
+          <article class="rule"><div><h3>Obtain permission before demolition</h3><p>Map planning approval, building permits, heritage limits, condominium or strata consent, contractor licensing and required inspections into the schedule.</p></div><div class="test"><b>Red flag</b>The budget depends on unapproved added area, a new use or structural work.</div></article>
+          <article class="rule"><div><h3>Renovate for the buyer—not yourself</h3><p>Match finish level to the local buyer, climate, maintenance expectations and comparable sales. Spend first on safety, function, layout and visible defects.</p></div><div class="test"><b>Scope test</b>Does each upgrade protect value, speed the sale or lift price beyond its cost?</div></article>
+          <article class="rule"><div><h3>Control scope, schedule and cash</h3><p>Use written drawings, quantities, inclusions, milestones, change-order rules and inspection points. Link payments to verified progress, not promises.</p></div><div class="test"><b>Site rule</b>Photograph hidden work before walls or floors are closed.</div></article>
+          <article class="rule"><div><h3>Finance the delay you did not plan</h3><p>Know the loan term, draw process, interest basis, extension fees, recourse and currency exposure. Keep liquidity outside the project budget.</p></div><div class="test"><b>Stress test</b>Model rates, exchange rates or holding time moving against you.</div></article>
+          <article class="rule"><div><h3>Insure the actual project</h3><p>Ordinary homeowner cover may exclude vacant buildings, construction or commercial activity. Confirm site, liability, flood, wind, earthquake and worker coverage where relevant.</p></div><div class="test"><b>Proof point</b>Get coverage and exclusions in writing before work begins.</div></article>
+          <article class="rule"><div><h3>Underwrite taxes before you buy</h3><p>Short holding periods may be treated as business income rather than capital gains. Include purchase, ownership and sale taxes, plus entity and cross-border consequences.</p></div><div class="test"><b>Professional check</b>Have a local tax adviser model the transaction—not just the annual return.</div></article>
+          <article class="rule"><div><h3>Build two credible exits</h3><p>Primary resale is not a plan by itself. Test rental cash flow, wholesale or assignment rights, refinance availability and a discounted quick-sale price.</p></div><div class="test"><b>Walk-away trigger</b>If every fallback loses more than your risk limit, the entry price is too high.</div></article>
+          <article class="rule"><div><h3>Document the handover</h3><p>Keep permits, invoices, warranties, inspections, disclosures and before/during/after records. Disclose known defects as local law requires.</p></div><div class="test"><b>Exit test</b>Could a buyer, lender and regulator trace what changed and who approved it?</div></article>
+        </div>
+      </section>
+
+      <section id="numbers">
+        <header class="section-head">
+          <div class="section-no">II</div>
+          <div><h2>The deal math</h2><p class="section-intro">A screening rule is not an offer. Price from your required profit backward, using costs that fit the actual jurisdiction and project.</p></div>
+        </header>
+        <div class="model-wrap">
+          <div class="formula">
+            <div class="formula-copy">
+              <h3>Maximum allowable offer</h3>
+              <p>Start with a conservative after-repair value. Then subtract every cost, your target profit and a contingency before deciding what you can pay.</p>
+              <div class="equation">MAO = ARV − renovation − transaction costs − holding & finance − taxes − contingency − target profit</div>
+              <div class="formula-note">
+                <span><b>The “70% rule” is only a filter.</b>It is common in parts of the United States, but it ignores local taxes, fees, financing and market velocity.</span>
+                <span><b>Return on cost</b>Expected profit ÷ total project cost. Also model annualized return when timelines differ.</span>
+              </div>
+            </div>
+            <form class="calc" id="calculator" onsubmit="return false;" aria-label="Flip screening calculator">
+              <div class="calc-header"><h3>Quick screen</h3><select class="currency" id="currency" aria-label="Currency symbol"><option value="$">$ USD</option><option value="€">€ EUR</option><option value="£">£ GBP</option><option value="C$">C$ CAD</option><option value="A$">A$ AUD</option><option value="¥">¥ JPY</option><option value="₹">₹ INR</option><option value="R">R ZAR</option><option value="د.إ">د.إ AED</option></select></div>
+              <div class="field"><label for="arv">After-repair value</label><input id="arv" type="number" min="0" step="1000" value="500000" inputmode="decimal"></div>
+              <div class="field"><label for="rehab">Renovation</label><input id="rehab" type="number" min="0" step="500" value="60000" inputmode="decimal"></div>
+              <div class="field"><label for="transact">Buying + selling costs</label><input id="transact" type="number" min="0" step="500" value="40000" inputmode="decimal"></div>
+              <div class="field"><label for="holding">Holding + finance</label><input id="holding" type="number" min="0" step="500" value="25000" inputmode="decimal"></div>
+              <div class="field"><label for="taxes">Project taxes</label><input id="taxes" type="number" min="0" step="500" value="15000" inputmode="decimal"></div>
+              <div class="field"><label for="contingency">Contingency</label><input id="contingency" type="number" min="0" step="500" value="12000" inputmode="decimal"></div>
+              <div class="field"><label for="profit">Target profit</label><input id="profit" type="number" min="0" step="1000" value="65000" inputmode="decimal"></div>
+              <div class="output" aria-live="polite">
+                <div class="output-row"><span>Non-purchase costs</span><strong id="cost-output">$152,000</strong></div>
+                <div class="output-row total"><span>Maximum offer</span><strong id="mao-output">$283,000</strong></div>
+                <div class="output-row"><span>Target margin on ARV</span><strong id="margin-output">13.0%</strong></div>
+                <p class="result-note" id="calc-note">Screening estimate only. Verify all figures locally before making an offer.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="local">
+        <header class="section-head">
+          <div class="section-no">III</div>
+          <div><h2>Local questions, by region</h2><p class="section-intro">These are investigation prompts—not summaries of law. Countries, states, provinces, cities and even buildings can impose different rules.</p></div>
+        </header>
+        <div class="territory-grid">
+          <div class="regions">
+            <div class="tablist" role="tablist" aria-label="Region">
+              <button class="tab" id="tab-americas" role="tab" aria-controls="panel-americas" aria-selected="true">Americas</button>
+              <button class="tab" id="tab-europe" role="tab" aria-controls="panel-europe" aria-selected="false" tabindex="-1">Europe</button>
+              <button class="tab" id="tab-apac" role="tab" aria-controls="panel-apac" aria-selected="false" tabindex="-1">Asia–Pacific</button>
+              <button class="tab" id="tab-mea" role="tab" aria-controls="panel-mea" aria-selected="false" tabindex="-1">Middle East & Africa</button>
+              <button class="tab" id="tab-crossborder" role="tab" aria-controls="panel-crossborder" aria-selected="false" tabindex="-1">Cross-border</button>
+            </div>
+          </div>
+          <div>
+            <article class="region-panel" id="panel-americas" role="tabpanel" aria-labelledby="tab-americas"><h3>Americas</h3><p>Rules can differ sharply by federal, national, state or provincial, municipal and association level.</p><div class="questions"><div class="question"><b>Title & sale</b>Which title system, escrow/notary process, disclosures and transfer taxes apply?</div><div class="question"><b>Permitting</b>Do municipal permits, zoning, historic review or HOA/condo approvals affect the scope?</div><div class="question"><b>Tax status</b>Will repeated or short-term sales be taxed as business/dealer income?</div><div class="question"><b>Foreclosure</b>Are there redemption rights, occupied-property risks or unpaid municipal/association claims?</div></div></article>
+            <article class="region-panel" id="panel-europe" role="tabpanel" aria-labelledby="tab-europe" hidden><h3>Europe</h3><p>Transaction costs, energy rules, consumer protection and building control can materially change the economics.</p><div class="questions"><div class="question"><b>Acquisition</b>What notary, registry, stamp duty or transfer-tax process applies?</div><div class="question"><b>Building status</b>Are alterations restricted by heritage listing, commonhold/co-ownership rules or planning controls?</div><div class="question"><b>Sale file</b>Which surveys, energy certificates, warranties and defect disclosures must be delivered?</div><div class="question"><b>Tax</b>How are gains, value-added tax and business activity characterized?</div></div></article>
+            <article class="region-panel" id="panel-apac" role="tabpanel" aria-labelledby="tab-apac" hidden><h3>Asia–Pacific</h3><p>Foreign ownership, land tenure, stamp duties and licensed-contractor rules deserve early attention.</p><div class="questions"><div class="question"><b>Eligibility</b>Can the intended buyer or entity lawfully own this land or property type?</div><div class="question"><b>Tenure</b>Is the interest freehold, leasehold, strata, company title or another form?</div><div class="question"><b>Anti-flipping measures</b>Do short holding periods trigger additional stamp duty, withholding or tax?</div><div class="question"><b>Standards</b>Which seismic, cyclone, fire, accessibility or energy codes affect renovations?</div></div></article>
+            <article class="region-panel" id="panel-mea" role="tabpanel" aria-labelledby="tab-mea" hidden><h3>Middle East & Africa</h3><p>Ownership zones, title certainty, registration procedures, infrastructure and currency controls can be decisive.</p><div class="questions"><div class="question"><b>Ownership</b>Are foreign or nonresident buyers limited to certain areas, title types or structures?</div><div class="question"><b>Registration</b>Which land department, deeds office, registry or notarial steps perfect ownership?</div><div class="question"><b>Services</b>Are utilities, service charges, community approvals and infrastructure obligations current?</div><div class="question"><b>Currency</b>Can purchase funds, profit and sale proceeds be transferred in and out as planned?</div></div></article>
+            <article class="region-panel" id="panel-crossborder" role="tabpanel" aria-labelledby="tab-crossborder" hidden><h3>Cross-border buyers</h3><p>Layer home-country reporting and currency risk on top of the property’s local rules.</p><div class="questions"><div class="question"><b>Ownership structure</b>Compare direct, company, partnership and trust ownership with advice in both jurisdictions.</div><div class="question"><b>Tax overlap</b>Model withholding, permanent establishment, tax treaties, foreign credits and reporting.</div><div class="question"><b>Money movement</b>Confirm banking, source-of-funds, exchange-control and repatriation requirements.</div><div class="question"><b>Execution</b>Identify who can inspect, approve payments, supervise work and sign locally.</div></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="gates">
+        <header class="section-head">
+          <div class="section-no">IV</div>
+          <div><h2>Four gates before “go”</h2><p class="section-intro">A deal advances only when every gate has a defensible answer. “We will figure it out later” is a failed gate.</p></div>
+        </header>
+        <div class="gate-grid">
+          <article class="gate"><div class="dot">1</div><h3>Legal gate</h3><p>Clear authority to buy, renovate, possess and resell—with title, restrictions and approvals understood.</p></article>
+          <article class="gate"><div class="dot">2</div><h3>Physical gate</h3><p>Condition, scope, code path, contractor capacity and timeline independently tested.</p></article>
+          <article class="gate"><div class="dot">3</div><h3>Financial gate</h3><p>Conservative value, complete costs, available cash, contingency and return hurdle all reconciled.</p></article>
+          <article class="gate"><div class="dot">4</div><h3>Exit gate</h3><p>Target buyer, route to market, disclosures, sale costs and a credible second exit documented.</p></article>
+        </div>
+        <div class="stop" role="note" aria-label="Walk away signals">
+          <div class="stop-title">Walk away when</div>
+          <div class="stop-list"><span>Title or seller authority cannot be proved.</span><span>The profit exists only at the highest possible resale price.</span><span>Essential work depends on approvals not yet tested.</span><span>The budget omits taxes, finance or selling costs.</span><span>Your only contractor estimate is a verbal total.</span><span>A delay would exhaust your liquidity.</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><strong>Use this as a decision framework.</strong><br>It is general educational information, not legal, tax, investment or construction advice.</div>
+      <div class="backtop"><a href="#top">Back to top ↑</a><br>Before committing capital, consult qualified advisers in the property’s jurisdiction.</div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var themeToggle = document.getElementById('theme-toggle');
+      var themeLabel = document.getElementById('theme-label');
+      var moonIcon = document.getElementById('moon-icon');
+      var sunIcon = document.getElementById('sun-icon');
+      var themeColor = document.querySelector('meta[name="theme-color"]');
+      var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      function currentTheme() {
+        return root.getAttribute('data-theme') || (darkQuery.matches ? 'dark' : 'light');
+      }
+      function updateThemeControl() {
+        var isDark = currentTheme() === 'dark';
+        themeLabel.textContent = isDark ? 'Light' : 'Dark';
+        moonIcon.style.display = isDark ? 'none' : '';
+        sunIcon.style.display = isDark ? '' : 'none';
+        themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        themeColor.setAttribute('content', isDark ? '#101814' : '#f4f2ea');
+      }
+      themeToggle.addEventListener('click', function () {
+        root.setAttribute('data-theme', currentTheme() === 'dark' ? 'light' : 'dark');
+        updateThemeControl();
+      });
+      if (darkQuery.addEventListener) darkQuery.addEventListener('change', updateThemeControl);
+      else if (darkQuery.addListener) darkQuery.addListener(updateThemeControl);
+      updateThemeControl();
+
+      var form = document.getElementById('calculator');
+      var currency = document.getElementById('currency');
+      var numberIds = ['arv', 'rehab', 'transact', 'holding', 'taxes', 'contingency', 'profit'];
+      function value(id) { return Math.max(0, Number(document.getElementById(id).value) || 0); }
+      function money(amount) {
+        var symbol = currency.value;
+        return symbol + Math.round(amount).toLocaleString(undefined, { maximumFractionDigits: 0 });
+      }
+      function calculate() {
+        var arv = value('arv');
+        var costs = value('rehab') + value('transact') + value('holding') + value('taxes') + value('contingency') + value('profit');
+        var mao = arv - costs;
+        var margin = arv > 0 ? (value('profit') / arv) * 100 : 0;
+        document.getElementById('cost-output').textContent = money(costs);
+        document.getElementById('mao-output').textContent = money(mao);
+        document.getElementById('mao-output').style.color = mao < 0 ? 'var(--negative)' : 'var(--positive)';
+        document.getElementById('margin-output').textContent = margin.toFixed(1) + '%';
+        document.getElementById('calc-note').textContent = mao < 0 ? 'Costs exceed the projected resale value. Rework the deal or walk away.' : 'Screening estimate only. Verify all figures locally before making an offer.';
+      }
+      form.addEventListener('input', calculate);
+      calculate();
+
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener('click', function () { activate(tab); });
+        tab.addEventListener('keydown', function (event) {
+          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+          event.preventDefault();
+          var next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+          activate(tabs[next]);
+          tabs[next].focus();
+        });
+      });
+      function activate(selected) {
+        tabs.forEach(function (tab) {
+          var active = tab === selected;
+          tab.setAttribute('aria-selected', active ? 'true' : 'false');
+          tab.tabIndex = active ? 0 : -1;
+          document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
